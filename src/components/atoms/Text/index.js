@@ -7,14 +7,14 @@ const Text = styled.Text`
     props.dark ? '#000' : props.primary ? primaryColor : '#fff'};
   font-size: ${(props) =>
     props.title
-      ? 22
+      ? '22px'
       : props.subtitle
-      ? 16
+      ? '16px'
       : props.large
-      ? 32
+      ? '32px'
       : props.small
-      ? 11
-      : 14};
+      ? '11px'
+      : '14px'};
   font-family: ${(props) =>
     props.light
       ? fonts.light

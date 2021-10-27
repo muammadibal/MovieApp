@@ -17,6 +17,7 @@ import {
   bgColor,
   boRadSize,
   marSize,
+  padSize,
   primaryColor,
   urlMovieImage,
   windowWidth,
@@ -158,29 +159,7 @@ const Detail = ({navigation, route}) => {
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   {getMovieDetailData.production_companies.map(
                     (vals, index) => {
-                      return index === 0 ? (
-                        <>
-                          <Gap width={marSize} />
-                          <View
-                            style={{
-                              maxWidth: 70,
-                              height: 90,
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              marginRight: marSize,
-                            }}>
-                            <Image
-                              source={{uri: urlMovieImage + vals.logo_path}}
-                              style={{
-                                width: 60,
-                                height: 60,
-                                borderRadius: boRadSize,
-                              }}
-                            />
-                            <Text small>{vals.name}</Text>
-                          </View>
-                        </>
-                      ) : (
+                      return (
                         <View
                           style={{
                             maxWidth: 70,
@@ -188,6 +167,8 @@ const Detail = ({navigation, route}) => {
                             alignItems: 'center',
                             justifyContent: 'center',
                             marginRight: marSize,
+                            marginLeft: index === 0 ? padSize : 0,
+                            marginRight: padSize,
                           }}>
                           <Image
                             source={{uri: urlMovieImage + vals.logo_path}}
@@ -197,7 +178,9 @@ const Detail = ({navigation, route}) => {
                               borderRadius: boRadSize,
                             }}
                           />
-                          <Text small>{vals.name}</Text>
+                          <Text center small>
+                            {vals.name}
+                          </Text>
                         </View>
                       );
                     },
@@ -223,29 +206,7 @@ const Detail = ({navigation, route}) => {
               <View style={{height: 90}}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                   {getMovieCreditsData.cast.map((vals, index) => {
-                    return index === 0 ? (
-                      <>
-                        <Gap width={marSize} />
-                        <View
-                          style={{
-                            maxWidth: 70,
-                            height: 90,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            marginRight: marSize,
-                          }}>
-                          <Image
-                            source={{uri: urlMovieImage + vals.profile_path}}
-                            style={{
-                              width: 60,
-                              height: 60,
-                              borderRadius: boRadSize,
-                            }}
-                          />
-                          <Text small>{vals.name}</Text>
-                        </View>
-                      </>
-                    ) : (
+                    return (
                       <View
                         style={{
                           maxWidth: 70,
@@ -253,6 +214,8 @@ const Detail = ({navigation, route}) => {
                           alignItems: 'center',
                           justifyContent: 'center',
                           marginRight: marSize,
+                          marginLeft: index === 0 ? padSize : 0,
+                          marginRight: padSize,
                         }}>
                         <Image
                           source={{uri: urlMovieImage + vals.profile_path}}
@@ -262,7 +225,9 @@ const Detail = ({navigation, route}) => {
                             borderRadius: boRadSize,
                           }}
                         />
-                        <Text small>{vals.name}</Text>
+                        <Text center small>
+                          {vals.name}
+                        </Text>
                       </View>
                     );
                   })}
@@ -280,7 +245,7 @@ const Detail = ({navigation, route}) => {
             }}>
             <Button
               text="Book"
-              onPress={() => navigation.navigate('Book')}
+              onPress={() => navigation.navigate('Book', {params: item})}
               overflow
               plain
               primary

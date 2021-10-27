@@ -13,8 +13,8 @@ export const boRadSize = 15;
 
 export const date = new Date();
 export const getYear = date.getFullYear();
-export const getMonth = date.getMonth();
-export const getTotalDate = new Date(getYear, getMonth, 0).getDate();
+export const getMonth = date.getMonth()+1;
+export const getTotalDate = new Date(getYear, getMonth, 0).getDate()+1;
 export const getDate = date.getDate();
 export const getMonthName = date.toLocaleString('default', {month: 'short'});
 export const getTime = date.getHours() + '.' + date.getMinutes();

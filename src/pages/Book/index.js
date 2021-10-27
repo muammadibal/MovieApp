@@ -13,6 +13,7 @@ import {
   primaryColor,
   windowWidth,
   currency,
+  padSize,
 } from '../../utils';
 import {ILScreen} from '../../assets';
 
@@ -32,7 +33,9 @@ const time = [
   '22.00',
 ];
 
-const Book = ({navigation}) => {
+const Book = ({navigation, route}) => {
+  const {params} = route.params;
+  // console.log(params)
   const [loading, setLoading] = React.useState(true);
   const [selected, setSelected] = React.useState([]);
   const [data, setData] = React.useState({
@@ -52,10 +55,11 @@ const Book = ({navigation}) => {
     listDate.push(i);
   }
   // console.log(data);
-  // console.log(getMonthName);
+  console.log(getMonthName.split(' ')[1]);
   // console.log(getDate);
   // console.log(getTime);
   // console.log(getTotalDate);
+  console.log(listDate);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -95,6 +99,7 @@ const Book = ({navigation}) => {
               }}
             />
             <Gap height={10} />
+            {/* seat */}
             <View
               style={{
                 width: windowWidth - 2 * marSize,
@@ -128,162 +133,88 @@ const Book = ({navigation}) => {
             </View>
             <Gap height={20} />
             <View style={{height: 70}}>
+              {/* date */}
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {listDate.map((item, index) => {
-                  return index === 0 ? (
-                    <>
-                      <Gap width={marSize} />
-                      <View
-                        style={{
-                          width: 50,
-                          height: 70,
-                          backgroundColor:
-                            item === data.date ? primaryColor : 'grey',
-                          borderRadius: boRadSize,
+                  return (
+                    <View
+                      style={{
+                        width: 50,
+                        height: 70,
+                        backgroundColor:
+                          item === data.date ? primaryColor : 'grey',
+                        borderRadius: boRadSize,
+                        marginLeft: index === 0 ? padSize : 0,
+                        marginRight: padSize,
+                      }}>
+                      <Button
+                        overflow
+                        onPress={() => {
+                          setData({...data, date: item});
                         }}>
-                        <Button
-                          overflow
-                          onPress={() => {
-                            setData({...data, date: item});
+                        <View
+                          style={{
+                            width: 50,
+                            height: 70,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: 5,
                           }}>
+                          <Text>{getMonthName.split(' ')[1]}</Text>
+                          <Gap height={5} />
                           <View
                             style={{
-                              width: 50,
-                              height: 70,
+                              width: 25,
+                              height: 25,
+                              backgroundColor: 'white',
+                              borderRadius: boRadSize,
                               alignItems: 'center',
                               justifyContent: 'center',
-                              padding: 5,
                             }}>
-                            <Text>{getMonthName}</Text>
-                            <Gap height={5} />
-                            <View
-                              style={{
-                                width: 25,
-                                height: 25,
-                                backgroundColor: 'white',
-                                borderRadius: boRadSize,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                              }}>
-                              <Text dark>{item}</Text>
-                            </View>
+                            <Text dark>{item}</Text>
                           </View>
-                        </Button>
-                      </View>
-                      <Gap width={marSize} />
-                    </>
-                  ) : (
-                    <>
-                      <View
-                        style={{
-                          width: 50,
-                          height: 70,
-                          backgroundColor:
-                            item === data.date ? primaryColor : 'grey',
-                          borderRadius: boRadSize,
-                        }}>
-                        <Button
-                          overflow
-                          onPress={() => {
-                            setData({...data, date: item});
-                          }}>
-                          <View
-                            style={{
-                              width: 50,
-                              height: 70,
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              padding: 5,
-                            }}>
-                            <Text>{getMonthName}</Text>
-                            <Gap height={5} />
-                            <View
-                              style={{
-                                width: 25,
-                                height: 25,
-                                backgroundColor: 'white',
-                                borderRadius: boRadSize,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                              }}>
-                              <Text dark>{item}</Text>
-                            </View>
-                          </View>
-                        </Button>
-                      </View>
-                      <Gap width={marSize} />
-                    </>
+                        </View>
+                      </Button>
+                    </View>
                   );
                 })}
               </ScrollView>
             </View>
             <Gap height={20} />
             <View style={{height: 30}}>
+              {/* time */}
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {time.map((item, index) => {
-                  return index === 0 ? (
-                    <>
-                      <Gap width={marSize} />
-                      <View
-                        style={{
-                          width: 50,
-                          height: 30,
-                          backgroundColor:
-                            item === data.time ? primaryColor : bgColor,
-                          borderRadius: boRadSize,
-                          borderWidth: 1,
-                          borderColor: primaryColor,
+                  return (
+                    <View
+                      style={{
+                        width: 50,
+                        height: 30,
+                        backgroundColor:
+                          item === data.time ? primaryColor : bgColor,
+                        borderRadius: boRadSize,
+                        borderWidth: 1,
+                        borderColor: primaryColor,
+                        marginLeft: index === 0 ? padSize : 0,
+                        marginRight: padSize,
+                      }}>
+                      <Button
+                        overflow
+                        onPress={() => {
+                          setData({...data, time: item});
                         }}>
-                        <Button
-                          overflow
-                          onPress={() => {
-                            setData({...data, time: item});
+                        <View
+                          style={{
+                            width: 50,
+                            height: 30,
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: 5,
                           }}>
-                          <View
-                            style={{
-                              width: 50,
-                              height: 30,
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              padding: 5,
-                            }}>
-                            <Text>{item}</Text>
-                          </View>
-                        </Button>
-                      </View>
-                      <Gap width={marSize} />
-                    </>
-                  ) : (
-                    <>
-                      <View
-                        style={{
-                          width: 50,
-                          height: 30,
-                          backgroundColor:
-                            item === data.time ? primaryColor : bgColor,
-                          borderRadius: boRadSize,
-                          borderWidth: 1,
-                          borderColor: primaryColor,
-                        }}>
-                        <Button
-                          overflow
-                          onPress={() => {
-                            setData({...data, time: item});
-                          }}>
-                          <View
-                            style={{
-                              width: 50,
-                              height: 30,
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              padding: 5,
-                            }}>
-                            <Text>{item}</Text>
-                          </View>
-                        </Button>
-                      </View>
-                      <Gap width={marSize} />
-                    </>
+                          <Text>{item}</Text>
+                        </View>
+                      </Button>
+                    </View>
                   );
                 })}
               </ScrollView>
@@ -312,7 +243,7 @@ const Book = ({navigation}) => {
               <View style={{flex: 1}}>
                 <Button
                   text="Book Now"
-                  onPress={() => {}}
+                  onPress={() => navigation.navigate('Ticket', {item: params})}
                   overflow
                   plain
                   primary

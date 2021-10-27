@@ -17,6 +17,7 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
     "axios": "^0.21.4",
+    "intl": "^1.2.5",
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-linear-gradient": "^2.5.6",

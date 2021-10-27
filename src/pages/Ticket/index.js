@@ -13,7 +13,7 @@ import Barcode from '@kichiyaki/react-native-barcode-generator';
 
 const Ticket = ({navigation, route}) => {
   const {item} = route.params;
-  console.log(item);
+  // console.log(item);
   return (
     <>
       <StatusBar translucent backgroundColor="transparent" />
